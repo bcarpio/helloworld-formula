@@ -10,7 +10,7 @@ apache_package:
 index_page:
   file.managed:
      - name: /var/www/html/index.html
-     - text: 'Automation for the People'
+     - contents: 'Automation for the People'
 
 apche_service:
   service.running:

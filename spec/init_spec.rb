@@ -1,10 +1,13 @@
-# for serverspec documentation: http://serverspec.org/
 require_relative 'spec_helper'
 
+describe package('apache2') do
+  it { should be_installed }
+end
 
-describe file("/etc/bamboo/haproxy_template.cfg") do
-  it{ should be_file }
-  # This line redirects traffic from localhost.com to www.localhost.com and
-  # resolves some issues with asset serving.
-  it{ should contain 'redirect prefix http://www.localhost.com code 301 if { hdr(host) -i localhost.com'}
+describe file ('/var/www/html/index.html') do
+  it { should contain 'Automation for the People' }
+end
+
+describe port(80) do
+  it { should be_listening.with('tcp6') }
 end
